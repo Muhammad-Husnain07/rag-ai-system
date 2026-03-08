@@ -46,6 +46,29 @@ class Settings(BaseSettings):
     MAX_FILE_SIZE_MB: int = 10
     ALLOWED_EXTENSIONS: List[str] = [".pdf", ".txt", ".md"]
     
+    # Vector Store: "pinecone", "chroma", or "weaviate"
+    VECTOR_STORE: str = "pinecone"
+    
+    # ChromaDB Settings
+    CHROMA_PERSIST_DIR: str = "./chroma_data"
+    
+    # Weaviate Settings
+    WEAVIATE_URL: str = "http://localhost:8080"
+    WEAVIATE_API_KEY: str = ""
+    
+    # Cache Settings
+    ENABLE_CACHE: bool = True
+    CACHE_TTL_SECONDS: int = 3600
+    
+    # System Prompt Customization
+    SYSTEM_PROMPT: str = """You are a helpful AI assistant that answers questions based on the provided documents.
+
+Instructions:
+- Answer the question based only on the provided context
+- If the answer cannot be found in the context, say so clearly
+- Be concise and accurate
+- Cite the sources when possible"""
+    
     class Config:
         env_file = ".env"
         case_sensitive = True
