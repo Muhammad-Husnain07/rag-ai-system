@@ -1,36 +1,68 @@
 from pydantic_settings import BaseSettings
-from typing import Optional
+from typing import Optional, List
 
 
 class Settings(BaseSettings):
     DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/rag_db"
     
-    PINECONE_API_KEY: str
+    # Vector Database
+    PINECONE_API_KEY: str = ""
     PINECONE_ENVIRONMENT: str = "us-west1-aws"
     PINECONE_INDEX_NAME: str = "rag-index"
     
-    OPENAI_API_KEY: str
+    # AI Providers
+    OPENAI_API_KEY: str = ""
+    OPENROUTER_API_KEY: str = ""
     
+    # AI Provider: "openai" or "openrouter"
+    AI_PROVIDER: str = "openai"
+    
+    # OpenRouter Models (https://openrouter.ai/models)
+    OPENROUTER_LLM_MODEL: str = "openai/gpt-4o-mini"
+    OPENROUTER_EMBEDDING_MODEL: str = "google/text-embedding-004"
+    
+    # OpenAI Models
+    OPENAI_LLM_MODEL: str = "gpt-4"
+    OPENAI_EMBEDDING_MODEL: str = "text-embedding-ada-002"
+    
+    # JWT Settings
     JWT_SECRET_KEY: str
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     JWT_REFRESH_TOKEN_EXPIRE_DAYS: int = 7
     
+    # Rate Limiting
     RATE_LIMIT_PER_MINUTE: int = 100
+    
+    # Logging
     LOG_LEVEL: str = "INFO"
     
-    EMBEDDING_MODEL: str = "text-embedding-ada-002"
+    # Text Processing
     CHUNK_SIZE: int = 1000
     CHUNK_OVERLAP: int = 200
     TOP_K_CHUNKS: int = 5
-    LLM_MODEL: str = "gpt-4"
     
+    # File Settings
     MAX_FILE_SIZE_MB: int = 10
-    ALLOWED_EXTENSIONS: list = [".pdf", ".txt", ".md"]
+    ALLOWED_EXTENSIONS: List[str] = [".pdf", ".txt", ".md"]
     
     class Config:
         env_file = ".env"
         case_sensitive = True
+    
+    @property
+    def llm_model(self) -> str:
+        """Get the current LLM model based on provider."""
+        if self.AI_PROVIDER == "openrouter":
+            return self.OPENROUTER_LLM_MODEL
+        return self.OPENAI_LLM_MODEL
+    
+    @property
+    def embedding_model(self) -> str:
+        """Get the current embedding model based on provider."""
+        if self.AI_PROVIDER == "openrouter":
+            return self.OPENROUTER_EMBEDDING_MODEL
+        return self.OPENAI_EMBEDDING_MODEL
 
 
 settings = Settings()

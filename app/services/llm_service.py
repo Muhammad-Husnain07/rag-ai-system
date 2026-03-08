@@ -4,11 +4,18 @@ from app.core.config import settings
 
 
 class LLMService:
-    """Service for generating answers using OpenAI GPT."""
+    """Service for generating answers using OpenAI GPT or OpenRouter models."""
     
     def __init__(self):
-        openai.api_key = settings.OPENAI_API_KEY
-        self.model = settings.LLM_MODEL
+        self.provider = settings.AI_PROVIDER
+        self.model = settings.llm_model
+        
+        if self.provider == "openrouter":
+            openai.api_key = settings.OPENROUTER_API_KEY
+            openai.base_url = "https://openrouter.ai/api/v1"
+        else:
+            openai.api_key = settings.OPENAI_API_KEY
+            openai.base_url = "https://api.openai.com/v1"
     
     async def generate_answer(
         self,
@@ -34,25 +41,25 @@ class LLMService:
             for i, chunk in enumerate(context_chunks)
         ]
         
-        prompt = f"""You are a helpful AI assistant that answers questions based on the provided documents.
-            
-Context from documents:
-{context}
-
-Question: {question}
-
+        system_prompt = """You are a helpful AI assistant that answers questions based on the provided documents.
+        
 Instructions:
 - Answer the question based only on the provided context
 - If the answer cannot be found in the context, say so clearly
 - Be concise and accurate
-- Cite the sources when possible
+- Cite the sources when possible"""
+        
+        prompt = f"""Context from documents:
+{context}
+
+Question: {question}
 
 Answer:"""
-
+        
         response = await openai.ChatCompletion.acreate(
             model=self.model,
             messages=[
-                {"role": "system", "content": "You are a helpful AI assistant that answers questions based on provided documents."},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.3,

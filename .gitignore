@@ -21,6 +21,8 @@ Thumbs.db
 *.db
 *.sqlite
 
-node_modules/
-dist/
-build/
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+*.log
