@@ -5,7 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.core.config import settings
-from app.core.database import init_db
+from app.core.database import init_db, AsyncSessionLocal
 from app.api import api_router
 from app.middleware import (
     LoggingMiddleware,
@@ -66,15 +66,79 @@ async def root():
 @app.get("/health", tags=["Health"])
 async def health_check():
     """Detailed health check endpoint."""
+    db_status = "unknown"
+    vector_status = "unknown"
+    
+    try:
+        async with AsyncSessionLocal() as session:
+            await session.execute("SELECT 1")
+        db_status = "connected"
+    except Exception:
+        db_status = "disconnected"
+    
+    try:
+        from app.services.vector_service import vector_service
+        vector_status = "connected"
+    except Exception:
+        vector_status = "disconnected"
+    
     return {
-        "status": "healthy",
+        "status": "healthy" if db_status == "connected" else "degraded",
         "service": "RAG Backend API",
         "version": "1.0.0",
         "ai_provider": settings.AI_PROVIDER,
         "llm_model": settings.llm_model,
         "embedding_model": settings.embedding_model,
-        "database": "connected",
-        "vector_store": "connected"
+        "vector_store": settings.VECTOR_STORE,
+        "database": db_status,
+        "vector_store_status": vector_status
+    }
+
+
+@app.get("/health/detailed", tags=["Health"])
+async def detailed_health_check():
+    """Detailed health check with all service statuses."""
+    health_info = {
+        "api": {"status": "healthy"},
+        "database": {"status": "unknown"},
+        "vector_store": {"status": "unknown"},
+        "ai_provider": {
+            "provider": settings.AI_PROVIDER,
+            "llm_model": settings.llm_model,
+            "embedding_model": settings.embedding_model
+        },
+        "config": {
+            "chunk_size": settings.CHUNK_SIZE,
+            "chunk_overlap": settings.CHUNK_OVERLAP,
+            "top_k_chunks": settings.TOP_K_CHUNKS,
+            "max_file_size_mb": settings.MAX_FILE_SIZE_MB
+        }
+    }
+    
+    try:
+        async with AsyncSessionLocal() as session:
+            await session.execute("SELECT 1")
+        health_info["database"]["status"] = "healthy"
+    except Exception as e:
+        health_info["database"]["status"] = "unhealthy"
+        health_info["database"]["error"] = str(e)
+    
+    try:
+        from app.services.vector_service import vector_service
+        health_info["vector_store"]["status"] = "healthy"
+        health_info["vector_store"]["type"] = settings.VECTOR_STORE
+    except Exception as e:
+        health_info["vector_store"]["status"] = "unhealthy"
+        health_info["vector_store"]["error"] = str(e)
+    
+    all_healthy = all(
+        service["status"] == "healthy" 
+        for service in [health_info["api"], health_info["database"], health_info["vector_store"]]
+    )
+    
+    return {
+        "status": "healthy" if all_healthy else "degraded",
+        "services": health_info
     }
 
 
