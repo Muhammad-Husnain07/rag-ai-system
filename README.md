@@ -4,13 +4,18 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with FastAP
 
 ## Features
 
-- **Document Management**: Upload PDF, TXT, and MD files
-- **Text Processing**: Automatic text extraction, chunking, and embedding generation
-- **Vector Storage**: Pinecone-powered semantic search
-- **AI Q&A**: GPT-4 powered contextual answers from your documents
-- **Authentication**: JWT-based user authentication
+- **Document Management**: Upload PDF, TXT, and MD files with automatic text extraction
+- **Multi AI Provider**: Support for OpenAI and OpenRouter with multiple models
+- **Multi Vector Store**: Pinecone, ChromaDB, and Weaviate support
+- **Text Processing**: Automatic text chunking with configurable overlap
+- **Semantic Search**: AI-powered similarity search using embeddings
+- **AI Q&A**: GPT-4 and other models for contextual answers
+- **User Settings**: Customizable AI models, chunk size, and system prompts
+- **Analytics**: Usage statistics and activity tracking
+- **Authentication**: JWT-based user authentication with refresh tokens
 - **Conversation History**: Persistent chat history per document
 - **Rate Limiting**: Protected against abuse
+- **Caching**: In-memory cache for improved performance
 - **API Documentation**: Full Swagger/OpenAPI documentation
 
 ## Tech Stack
@@ -18,8 +23,8 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with FastAP
 ### Backend
 - **FastAPI** - Modern Python web framework
 - **PostgreSQL** - Relational database for metadata
-- **Pinecone** - Vector database for embeddings
-- **OpenAI** - GPT-4 and text-embeddings
+- **Pinecone/ChromaDB/Weaviate** - Vector databases
+- **OpenAI/OpenRouter** - LLMs and embeddings
 - **SQLAlchemy** - ORM for database operations
 - **JWT** - Token-based authentication
 
@@ -29,17 +34,16 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with FastAP
 - **TailwindCSS** - Modern styling
 - **Framer Motion** - Animations
 - **React Router** - Client-side routing
-- **React Dropzone** - File uploads
 
-## Getting Started
+## Quick Start
 
 ### Prerequisites
 
 - Python 3.10+
 - Node.js 18+
 - PostgreSQL database
-- Pinecone account
-- OpenAI API key
+- Pinecone/Weaviate account (optional)
+- OpenAI or OpenRouter API key
 
 ### Backend Setup
 
@@ -87,22 +91,42 @@ The frontend will be available at `http://localhost:3000`
 ### Backend (.env)
 
 ```env
+# Database
 DATABASE_URL=postgresql://user:password@localhost:5432/rag_db
+
+# Vector Store: "pinecone", "chroma", or "weaviate"
+VECTOR_STORE=pinecone
 PINECONE_API_KEY=your_pinecone_api_key
 PINECONE_ENVIRONMENT=us-west1-aws
 PINECONE_INDEX_NAME=rag-index
+
+# AI Provider: "openai" or "openrouter"
+AI_PROVIDER=openai
 OPENAI_API_KEY=your_openai_api_key
+OPENAI_LLM_MODEL=gpt-4
+OPENAI_EMBEDDING_MODEL=text-embedding-ada-002
+
+# OpenRouter (alternative)
+OPENROUTER_API_KEY=your_openrouter_api_key
+OPENROUTER_LLM_MODEL=openai/gpt-4o-mini
+OPENROUTER_EMBEDDING_MODEL=google/text-embedding-004
+
+# JWT Authentication
 JWT_SECRET_KEY=your_secret_key
-JWT_ALGORITHM=HS256
 JWT_ACCESS_TOKEN_EXPIRE_MINUTES=30
 JWT_REFRESH_TOKEN_EXPIRE_DAYS=7
+
+# Rate Limiting
 RATE_LIMIT_PER_MINUTE=100
-LOG_LEVEL=INFO
-EMBEDDING_MODEL=text-embedding-ada-002
+
+# Text Processing
 CHUNK_SIZE=1000
 CHUNK_OVERLAP=200
 TOP_K_CHUNKS=5
-LLM_MODEL=gpt-4
+
+# Cache
+ENABLE_CACHE=true
+CACHE_TTL_SECONDS=3600
 ```
 
 ## API Endpoints
@@ -133,56 +157,55 @@ LLM_MODEL=gpt-4
 | GET | `/api/v1/chat/conversations` | List conversations |
 | GET | `/api/v1/chat/conversations/{id}/messages` | Get messages |
 
+### Settings
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/settings` | Get user settings |
+| PUT | `/api/v1/settings` | Update settings |
+| POST | `/api/v1/settings/reset` | Reset to defaults |
+
+### Analytics
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/analytics/usage` | Usage statistics |
+| GET | `/api/v1/analytics/recent-activity` | Recent activity |
+| GET | `/api/v1/analytics/document-stats/{id}` | Document stats |
+
+### System
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Health check |
+| GET | `/health` | Detailed health |
+| GET | `/models` | Available AI models |
+
 ## Project Structure
 
 ```
 RAG/
 ├── app/
 │   ├── api/              # API route handlers
-│   │   ├── auth.py       # Authentication endpoints
-│   │   ├── documents.py # Document endpoints
-│   │   └── chat.py      # Chat endpoints
+│   │   ├── auth.py       # Authentication
+│   │   ├── documents.py  # Document management
+│   │   ├── chat.py       # Chat & Q&A
+│   │   ├── settings.py   # User settings
+│   │   └── analytics.py  # Usage analytics
 │   ├── core/             # Core configurations
 │   │   ├── config.py    # App settings
 │   │   ├── database.py  # Database setup
-│   │   └── security.py  # JWT & security
+│   │   ├── security.py  # JWT & security
+│   │   └── settings.py # Runtime settings
 │   ├── models/           # SQLAlchemy models
-│   │   ├── user.py
-│   │   ├── document.py
-│   │   └── conversation.py
-│   ├── services/          # Business logic
-│   │   ├── auth_service.py
-│   │   ├── document_service.py
-│   │   ├── embedding_service.py
-│   │   ├── vector_service.py
-│   │   ├── llm_service.py
-│   │   └── chat_service.py
-│   ├── schemas/          # Pydantic schemas
-│   ├── middleware/       # Custom middleware
-│   │   ├── rate_limiter.py
-│   │   ├── logger.py
-│   │   └── error_handler.py
-│   └── utils/           # Utility functions
+│   ├── services          # Business logic
+│   ├── middleware        # Custom middleware
+│   └── utils           # Utility functions
 ├── frontend/            # React frontend
-│   ├── src/
-│   │   ├── components/  # UI components
-│   │   ├── pages/      # Page components
-│   │   ├── services/   # API client
-│   │   ├── context/    # React context
-│   │   └── hooks/      # Custom hooks
-│   └── public/         # Static assets
 ├── tests/              # Unit tests
 ├── main.py             # Application entry
 └── requirements.txt    # Python dependencies
 ```
-
-## Usage
-
-1. **Register/Login**: Create an account or login
-2. **Upload Document**: Go to Documents page and upload a PDF, TXT, or MD file
-3. **Wait for Processing**: The document will be processed and embedded
-4. **Ask Questions**: Go to Chat, select a document, and ask questions
-5. **Get Answers**: AI will answer based on the document content
 
 ## Architecture
 
@@ -195,25 +218,49 @@ RAG/
          ┌────────────────┼────────────────┐
          ▼                ▼                ▼
   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-  │   OpenAI    │  │  Pinecone  │  │   GPT-4    │
-  │ (Embeddings)│  │  (Vectors) │  │  (LLM)     │
+  │   OpenAI/   │  │  Pinecone/  │  │  GPT-4/    │
+  │  OpenRouter │  │   ChromaDB  │  │   Claude    │
   └─────────────┘  └─────────────┘  └─────────────┘
 ```
 
-## Security
+## Available AI Models
+
+### OpenAI
+- GPT-4, GPT-4 Turbo, GPT-4O, GPT-4O Mini
+- text-embedding-ada-002, text-embedding-3-small/large
+
+### OpenRouter
+- openai/gpt-4o, openai/gpt-4o-mini
+- anthropic/claude-3.5-sonnet
+- google/gemini-pro-1.5
+- meta-llama/llama-3.1-70b-instruct
+- mistralai/mistral-7b-instruct
+
+## Security Features
 
 - JWT token-based authentication
 - Password hashing with bcrypt
 - Rate limiting (100 requests/minute)
 - CORS configuration
 - Input validation with Pydantic
+- Structured error handling
 
-## Logging
+## Logging & Monitoring
 
 - Structured logging with structlog
 - Request/response logging
 - Global exception handling
-- Error tracking
+- Detailed health checks
+
+## Testing
+
+```bash
+# Run backend tests
+pytest
+
+# Run frontend tests
+cd frontend && npm test
+```
 
 ## License
 
