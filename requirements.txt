@@ -15,4 +15,6 @@ python-magic==0.4.27
 structlog==24.1.0
 slowapi==0.1.9
 httpx==0.26.0
+aiohttp==3.9.3
 alembic==1.13.1
+ruff==0.1.15
