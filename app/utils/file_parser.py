@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 import os
 import io
 
@@ -6,18 +6,13 @@ import io
 async def extract_text_from_file(file_content: bytes, file_extension: str) -> str:
     """
     Extract text from various file formats.
-    
-    Args:
-        file_content: Raw file bytes
-        file_extension: File extension (.pdf, .txt, .md)
-    
-    Returns:
-        Extracted text content
     """
     if file_extension == ".pdf":
         return await extract_text_from_pdf(file_content)
     elif file_extension in [".txt", ".md"]:
         return extract_text_from_plain(file_content)
+    elif file_extension in [".docx", ".doc"]:
+        return await extract_text_from_docx(file_content)
     else:
         raise ValueError(f"Unsupported file type: {file_extension}")
 
@@ -27,7 +22,7 @@ async def extract_text_from_pdf(file_content: bytes) -> str:
     try:
         import pdfplumber
     except ImportError:
-        raise ImportError("pdfplumber is required for PDF processing. Install with: pip install pdfplumber")
+        raise ImportError("pdfplumber is required for PDF processing")
     
     text_parts = []
     
@@ -40,6 +35,31 @@ async def extract_text_from_pdf(file_content: bytes) -> str:
     return "\n\n".join(text_parts)
 
 
+async def extract_text_from_docx(file_content: bytes) -> str:
+    """Extract text from DOCX files."""
+    try:
+        import docx
+    except ImportError:
+        raise ImportError("python-docx is required for DOCX processing")
+    
+    text_parts = []
+    
+    with io.BytesIO(file_content) as f:
+        doc = docx.Document(f)
+        
+        for paragraph in doc.paragraphs:
+            if paragraph.text.strip():
+                text_parts.append(paragraph.text)
+        
+        for table in doc.tables:
+            for row in table.rows:
+                for cell in row.cells:
+                    if cell.text.strip():
+                        text_parts.append(cell.text)
+    
+    return "\n\n".join(text_parts)
+
+
 def extract_text_from_plain(file_content: bytes) -> str:
     """Extract text from plain text or markdown files."""
     try:
@@ -48,14 +68,20 @@ def extract_text_from_plain(file_content: bytes) -> str:
         return file_content.decode("latin-1", errors="ignore")
 
 
-def validate_file(file_name: str, file_size: int, max_size_mb: int = 10) -> tuple[bool, Optional[str]]:
+def validate_file(
+    file_name: str, 
+    file_size: int, 
+    max_size_mb: int = 10,
+    allowed_extensions: Optional[List[str]] = None
+) -> tuple[bool, Optional[str]]:
     """
     Validate uploaded file.
     
     Returns:
         Tuple of (is_valid, error_message)
     """
-    allowed_extensions = [".pdf", ".txt", ".md"]
+    if allowed_extensions is None:
+        allowed_extensions = [".pdf", ".txt", ".md", ".docx", ".doc"]
     
     _, ext = os.path.splitext(file_name)
     ext = ext.lower()
@@ -68,3 +94,15 @@ def validate_file(file_name: str, file_size: int, max_size_mb: int = 10) -> tupl
         return False, f"File size exceeds maximum of {max_size_mb}MB"
     
     return True, None
+
+
+def get_mime_type(file_extension: str) -> str:
+    """Get MIME type from file extension."""
+    mime_types = {
+        ".pdf": "application/pdf",
+        ".txt": "text/plain",
+        ".md": "text/markdown",
+        ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ".doc": "application/msword"
+    }
+    return mime_types.get(file_extension.lower(), "application/octet-stream")
