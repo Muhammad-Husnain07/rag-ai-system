@@ -3,6 +3,10 @@ from typing import Optional, List
 
 
 class Settings(BaseSettings):
+    # API Configuration
+    API_VERSION: str = "v1"
+    API_PREFIX: str = "/api/v1"
+    
     DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/rag_db"
     
     # Vector Database
@@ -17,7 +21,7 @@ class Settings(BaseSettings):
     # AI Provider: "openai" or "openrouter"
     AI_PROVIDER: str = "openai"
     
-    # OpenRouter Models (https://openrouter.ai/models)
+    # OpenRouter Models
     OPENROUTER_LLM_MODEL: str = "openai/gpt-4o-mini"
     OPENROUTER_EMBEDDING_MODEL: str = "google/text-embedding-004"
     
@@ -36,6 +40,7 @@ class Settings(BaseSettings):
     
     # Logging
     LOG_LEVEL: str = "INFO"
+    LOG_FORMAT: str = "json"
     
     # Text Processing
     CHUNK_SIZE: int = 1000
@@ -44,7 +49,13 @@ class Settings(BaseSettings):
     
     # File Settings
     MAX_FILE_SIZE_MB: int = 10
-    ALLOWED_EXTENSIONS: List[str] = [".pdf", ".txt", ".md"]
+    ALLOWED_EXTENSIONS: List[str] = [".pdf", ".txt", ".md", ".docx", ".doc"]
+    ALLOWED_MIME_TYPES: List[str] = [
+        "application/pdf",
+        "text/plain",
+        "text/markdown",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ]
     
     # Vector Store: "pinecone", "chroma", or "weaviate"
     VECTOR_STORE: str = "pinecone"
@@ -59,6 +70,10 @@ class Settings(BaseSettings):
     # Cache Settings
     ENABLE_CACHE: bool = True
     CACHE_TTL_SECONDS: int = 3600
+    
+    # Admin Settings
+    ADMIN_EMAILS: List[str] = []
+    ENABLE_ADMIN_API: bool = False
     
     # System Prompt Customization
     SYSTEM_PROMPT: str = """You are a helpful AI assistant that answers questions based on the provided documents.
@@ -75,14 +90,12 @@ Instructions:
     
     @property
     def llm_model(self) -> str:
-        """Get the current LLM model based on provider."""
         if self.AI_PROVIDER == "openrouter":
             return self.OPENROUTER_LLM_MODEL
         return self.OPENAI_LLM_MODEL
     
     @property
     def embedding_model(self) -> str:
-        """Get the current embedding model based on provider."""
         if self.AI_PROVIDER == "openrouter":
             return self.OPENROUTER_EMBEDDING_MODEL
         return self.OPENAI_EMBEDDING_MODEL
