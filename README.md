@@ -4,14 +4,17 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with FastAP
 
 ## Features
 
-- **Document Management**: Upload PDF, TXT, and MD files with automatic text extraction
+- **Document Management**: Upload PDF, TXT, MD, and DOCX files with automatic text extraction
 - **Multi AI Provider**: Support for OpenAI and OpenRouter with multiple models
 - **Multi Vector Store**: Pinecone, ChromaDB, and Weaviate support
 - **Text Processing**: Automatic text chunking with configurable overlap
 - **Semantic Search**: AI-powered similarity search using embeddings
-- **AI Q&A**: GPT-4 and other models for contextual answers
+- **AI Q&A**: GPT-4, Claude, Llama, and other models for contextual answers
 - **User Settings**: Customizable AI models, chunk size, and system prompts
 - **Analytics**: Usage statistics and activity tracking
+- **Batch Processing**: Process multiple documents at once
+- **Data Export/Import**: Backup and restore your data
+- **Webhooks**: Event notifications for document processing
 - **Authentication**: JWT-based user authentication with refresh tokens
 - **Conversation History**: Persistent chat history per document
 - **Rate Limiting**: Protected against abuse
@@ -86,11 +89,22 @@ npm run dev
 
 The frontend will be available at `http://localhost:3000`
 
+### Docker Setup
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+```
+
 ## Environment Variables
 
 ### Backend (.env)
 
 ```env
+# API Configuration
+API_VERSION=v1
+API_PREFIX=/api/v1
+
 # Database
 DATABASE_URL=postgresql://user:password@localhost:5432/rag_db
 
@@ -173,12 +187,22 @@ CACHE_TTL_SECONDS=3600
 | GET | `/api/v1/analytics/recent-activity` | Recent activity |
 | GET | `/api/v1/analytics/document-stats/{id}` | Document stats |
 
+### Export/Import
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/export/documents` | Export documents |
+| GET | `/api/v1/export/conversations` | Export conversations |
+| GET | `/api/v1/export/all` | Export all data |
+| POST | `/api/v1/export/import/documents` | Import documents |
+
 ### System
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/` | Health check |
 | GET | `/health` | Detailed health |
+| GET | `/health/detailed` | Full system status |
 | GET | `/models` | Available AI models |
 
 ## Project Structure
@@ -191,19 +215,26 @@ RAG/
 │   │   ├── documents.py  # Document management
 │   │   ├── chat.py       # Chat & Q&A
 │   │   ├── settings.py   # User settings
-│   │   └── analytics.py  # Usage analytics
+│   │   ├── analytics.py  # Usage analytics
+│   │   └── export.py     # Data export/import
 │   ├── core/             # Core configurations
-│   │   ├── config.py    # App settings
-│   │   ├── database.py  # Database setup
-│   │   ├── security.py  # JWT & security
-│   │   └── settings.py # Runtime settings
+│   │   ├── config.py     # App settings
+│   │   ├── database.py   # Database setup
+│   │   ├── security.py   # JWT & security
+│   │   └── settings.py   # Runtime settings
 │   ├── models/           # SQLAlchemy models
-│   ├── services          # Business logic
-│   ├── middleware        # Custom middleware
-│   └── utils           # Utility functions
-├── frontend/            # React frontend
-├── tests/              # Unit tests
-├── main.py             # Application entry
+│   ├── services/         # Business logic
+│   ├── middleware/       # Custom middleware
+│   │   ├── rate_limiter.py
+│   │   ├── logger.py
+│   │   ├── error_handler.py
+│   │   └── request_id.py
+│   └── utils/           # Utility functions
+├── frontend/             # React frontend
+├── tests/                # Unit tests
+├── docker-compose.yml    # Docker configuration
+├── Dockerfile            # Backend Dockerfile
+├── main.py              # Application entry
 └── requirements.txt    # Python dependencies
 ```
 
@@ -236,6 +267,14 @@ RAG/
 - meta-llama/llama-3.1-70b-instruct
 - mistralai/mistral-7b-instruct
 
+## Supported File Types
+
+- **PDF** - Portable Document Format
+- **TXT** - Plain text files
+- **MD** - Markdown files
+- **DOCX** - Microsoft Word documents
+- **DOC** - Legacy Word documents
+
 ## Security Features
 
 - JWT token-based authentication
@@ -244,11 +283,13 @@ RAG/
 - CORS configuration
 - Input validation with Pydantic
 - Structured error handling
+- Request ID tracking for debugging
 
 ## Logging & Monitoring
 
 - Structured logging with structlog
 - Request/response logging
+- Request ID and timing middleware
 - Global exception handling
 - Detailed health checks
 
