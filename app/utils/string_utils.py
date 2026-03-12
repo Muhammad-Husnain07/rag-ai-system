@@ -1,0 +1,54 @@
+import re
+from typing import Optional
+
+
+def slugify(text: str) -> str:
+    """Convert text to URL-friendly slug."""
+    text = text.lower()
+    text = re.sub(r'[^\w\s-]', '', text)
+    text = re.sub(r'[-\s]+', '-', text)
+    return text.strip('-')
+
+
+def truncate(text: str, length: int = 100, suffix: str = "...") -> str:
+    """Truncate text to specified length."""
+    if len(text) <= length:
+        return text
+    return text[:length - len(suffix)] + suffix
+
+
+def remove_extra_spaces(text: str) -> str:
+    """Remove extra whitespace from text."""
+    return ' '.join(text.split())
+
+
+def extract_urls(text: str) -> list:
+    """Extract URLs from text."""
+    url_pattern = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+    return re.findall(url_pattern, text)
+
+
+def mask_email(email: str) -> str:
+    """Mask email address for privacy."""
+    if '@' not in email:
+        return email
+    
+    local, domain = email.split('@')
+    if len(local) <= 2:
+        masked_local = local[0] + '*'
+    else:
+        masked_local = local[0] + '*' * (len(local) - 2) + local[-1]
+    
+    return f"{masked_local}@{domain}"
+
+
+def count_words(text: str) -> int:
+    """Count words in text."""
+    return len(text.split())
+
+
+def count_chars(text: str, include_spaces: bool = True) -> int:
+    """Count characters in text."""
+    if include_spaces:
+        return len(text)
+    return len(text.replace(' ', ''))
