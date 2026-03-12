@@ -15,6 +15,9 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with FastAP
 - **Batch Processing**: Process multiple documents at once
 - **Data Export/Import**: Backup and restore your data
 - **Webhooks**: Event notifications for document processing
+- **Notifications**: In-app notification system for user alerts
+- **Metrics**: API usage and performance monitoring
+- **Admin Panel**: User management and system controls
 - **Authentication**: JWT-based user authentication with refresh tokens
 - **Conversation History**: Persistent chat history per document
 - **Rate Limiting**: Protected against abuse
@@ -187,6 +190,15 @@ CACHE_TTL_SECONDS=3600
 | GET | `/api/v1/analytics/recent-activity` | Recent activity |
 | GET | `/api/v1/analytics/document-stats/{id}` | Document stats |
 
+### Admin
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/admin/stats` | System statistics |
+| GET | `/api/v1/admin/users` | List all users |
+| POST | `/api/v1/admin/users/{id}/deactivate` | Deactivate user |
+| POST | `/api/v1/admin/users/{id}/activate` | Activate user |
+
 ### Export/Import
 
 | Method | Endpoint | Description |
@@ -204,38 +216,63 @@ CACHE_TTL_SECONDS=3600
 | GET | `/health` | Detailed health |
 | GET | `/health/detailed` | Full system status |
 | GET | `/models` | Available AI models |
+| GET | `/info` | App information |
+| GET | `/info/version` | Version info |
 
 ## Project Structure
 
 ```
 RAG/
 ├── app/
-│   ├── api/              # API route handlers
-│   │   ├── auth.py       # Authentication
-│   │   ├── documents.py  # Document management
+│   ├── api/               # API route handlers
+│   │   ├── auth.py        # Authentication
+│   │   ├── documents.py   # Document management
 │   │   ├── chat.py       # Chat & Q&A
 │   │   ├── settings.py   # User settings
 │   │   ├── analytics.py  # Usage analytics
-│   │   └── export.py     # Data export/import
-│   ├── core/             # Core configurations
+│   │   ├── export.py     # Data export/import
+│   │   ├── admin.py      # Admin panel
+│   │   └── info.py       # App info
+│   ├── core/              # Core configurations
 │   │   ├── config.py     # App settings
-│   │   ├── database.py   # Database setup
+│   │   ├── database.py    # Database setup
 │   │   ├── security.py   # JWT & security
 │   │   └── settings.py   # Runtime settings
-│   ├── models/           # SQLAlchemy models
-│   ├── services/         # Business logic
-│   ├── middleware/       # Custom middleware
+│   ├── models/            # SQLAlchemy models
+│   ├── services/          # Business logic
+│   │   ├── auth_service.py
+│   │   ├── document_service.py
+│   │   ├── embedding_service.py
+│   │   ├── vector_service.py
+│   │   ├── llm_service.py
+│   │   ├── chat_service.py
+│   │   ├── cache_service.py
+│   │   ├── metrics_service.py
+│   │   ├── health_service.py
+│   │   ├── notification_service.py
+│   │   └── webhook_service.py
+│   ├── schemas/           # Pydantic schemas
+│   ├── middleware/        # Custom middleware
 │   │   ├── rate_limiter.py
 │   │   ├── logger.py
 │   │   ├── error_handler.py
-│   │   └── request_id.py
-│   └── utils/           # Utility functions
-├── frontend/             # React frontend
-├── tests/                # Unit tests
-├── docker-compose.yml    # Docker configuration
+│   │   ├── request_id.py
+│   │   └── simple_rate_limiter.py
+│   └── utils/             # Utility functions
+│       ├── file_parser.py
+│       ├── text_chunker.py
+│       ├── helpers.py
+│       ├── pagination.py
+│       ├── constants.py
+│       ├── datetime_utils.py
+│       ├── string_utils.py
+│       └── query_builder.py
+├── frontend/              # React frontend
+├── tests/                 # Unit tests
+├── docker-compose.yml     # Docker configuration
 ├── Dockerfile            # Backend Dockerfile
-├── main.py              # Application entry
-└── requirements.txt    # Python dependencies
+├── main.py               # Application entry
+└── requirements.txt      # Python dependencies
 ```
 
 ## Architecture
@@ -292,6 +329,7 @@ RAG/
 - Request ID and timing middleware
 - Global exception handling
 - Detailed health checks
+- API metrics tracking
 
 ## Testing
 
