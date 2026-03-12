@@ -1,0 +1,25 @@
+{
+  "name": "rag-ai-system",
+  "version": "1.0.0",
+  "description": "Production-ready RAG system with FastAPI and React",
+  "author": "Muhammad Husnain",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Muhammad-Husnain07/rag-ai-system"
+  },
+  "keywords": [
+    "rag",
+    "retrieval-augmented-generation",
+    "fastapi",
+    "react",
+    "openai",
+    "pinecone",
+    "embeddings",
+    "chatbot"
+  ],
+  "engines": {
+    "python": ">=3.10",
+    "node": ">=18.0.0"
+  }
+}
