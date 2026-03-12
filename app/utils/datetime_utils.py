@@ -1,0 +1,43 @@
+from datetime import datetime, timedelta
+from typing import Optional
+
+
+def get_utc_now() -> datetime:
+    """Get current UTC datetime."""
+    return datetime.utcnow()
+
+
+def add_days(date: datetime, days: int) -> datetime:
+    """Add days to a date."""
+    return date + timedelta(days=days)
+
+
+def add_hours(date: datetime, hours: int) -> datetime:
+    """Add hours to a date."""
+    return date + timedelta(hours=hours)
+
+
+def is_expired(expiry_date: datetime) -> bool:
+    """Check if a date has expired."""
+    return datetime.utcnow() > expiry_date
+
+
+def time_until_expiry(expiry_date: datetime) -> Optional[timedelta]:
+    """Get time until a date expires."""
+    delta = expiry_date - datetime.utcnow()
+    return delta if delta.total_seconds() > 0 else None
+
+
+def format_iso(dt: Optional[datetime]) -> Optional[str]:
+    """Format datetime to ISO string."""
+    return dt.isoformat() + 'Z' if dt else None
+
+
+def parse_iso(date_str: str) -> Optional[datetime]:
+    """Parse ISO date string."""
+    try:
+        if date_str.endswith('Z'):
+            date_str = date_str[:-1]
+        return datetime.fromisoformat(date_str)
+    except (ValueError, AttributeError):
+        return None
