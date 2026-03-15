@@ -1,4 +1,5 @@
 """Lightweight API information endpoints."""
+"""Info endpoints micro-docstring for clarity."""
 from fastapi import APIRouter
 
 router = APIRouter(tags=["Info"])
@@ -28,3 +29,4 @@ async def get_version():
         "minor": 0,
         "patch": 0
     }
+"""Info endpoints micro-docstring update for clarity."""
