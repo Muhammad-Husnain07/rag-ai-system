@@ -348,3 +348,16 @@ MIT License
 ## Author
 
 Muhammad Husnain
+
+## Release Notes (tiny improvements batch)
+
+- Added a batch of small improvements across docs and codebase (10 micro-changes) to refine UX and developer experience.
+- Introduced new helper utilities (size, string, datetime, and URL utilities) to support common tasks.
+- Improved API responses with standard schemas and a lightweight messaging layer for consistent error handling.
+- Added admin endpoints for basic system observation and user management (read-only in this patch scope).
+- Bumped patch version to 1.0.1 to reflect minor changes.
+- Updated development docs and contribution guide to reflect ongoing improvements.
+- Added small test coverage (smoke tests) to validate utilities.
+- Added lightweight URL and input validation utilities to support safer inputs.
+- Introduced a minimal in-memory rate limiter utility for quick protection against abuse.
+- Added a new API info endpoint for quick app introspection.
