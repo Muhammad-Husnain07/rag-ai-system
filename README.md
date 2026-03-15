@@ -349,6 +349,8 @@ MIT License
 
 Muhammad Husnain
 
+Note: See CHANGELOG_BATCH7.md for the latest tiny-improvements batch details.
+
 ## Release Notes (tiny improvements batch)
 
 - Added a batch of small improvements across docs and codebase (10 micro-changes) to refine UX and developer experience.
