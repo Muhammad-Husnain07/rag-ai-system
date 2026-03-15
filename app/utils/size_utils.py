@@ -23,3 +23,7 @@ def human_readable_to_bytes(size_str: str) -> int:
             return int(value * multiplier)
     
     return int(size_str)
+
+def is_large_file(size_bytes: int, threshold_mb: int = 10) -> bool:
+    """Return True if file size exceeds threshold (in MB)."""
+    return size_bytes >= threshold_mb * 1024 * 1024
