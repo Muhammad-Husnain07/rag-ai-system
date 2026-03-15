@@ -353,6 +353,9 @@ Note: See CHANGELOG_BATCH7.md for the latest tiny-improvements batch details.
 
 ## Release Notes (tiny improvements batch)
 
+- Released a batch of 7 tiny commits to refine docs, utilities, and tests.
+- See CHANGELOG.md for full details and version history.
+- Version bumped to 1.0.4 in code.
 - Added a batch of small improvements across docs and codebase (10 micro-changes) to refine UX and developer experience.
 - Introduced new helper utilities (size, string, datetime, and URL utilities) to support common tasks.
 - Improved API responses with standard schemas and a lightweight messaging layer for consistent error handling.

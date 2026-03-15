@@ -1,4 +1,5 @@
 """Admin endpoints for system management (tiny docstring)."""
+"""Admin endpoints for system management (tiny docstring)."""
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
