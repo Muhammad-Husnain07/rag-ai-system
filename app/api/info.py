@@ -1,6 +1,7 @@
 """Lightweight API information endpoints."""
 """Info endpoints micro-docstring for clarity."""
 """Expose lightweight application information for quick introspection."""
+"""Expose lightweight application information for quick introspection."""
 from fastapi import APIRouter
 
 router = APIRouter(tags=["Info"])

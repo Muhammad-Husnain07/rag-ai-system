@@ -4,6 +4,7 @@ This module exposes a Settings model used across the application to
 configure environment-driven values such as database connections, API
 keys, embedding/model settings, rate limits, and feature toggles.
 """
+"""Central configuration for the RAG system."""
 from pydantic_settings import BaseSettings
 from typing import Optional, List
 
