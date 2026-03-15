@@ -1,3 +1,4 @@
+"""Lightweight API information endpoints."""
 from fastapi import APIRouter
 
 router = APIRouter(tags=["Info"])

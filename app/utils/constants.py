@@ -15,6 +15,9 @@ ERROR_CODES = {
     "PER_001": "Permission denied",
 }
 
+# Public API
+__all__ = ["ERROR_CODES", "get_error_message"]
+
 
 def get_error_message(code: str, default: str = "An error occurred") -> str:
     """Get error message by code."""
