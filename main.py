@@ -17,6 +17,8 @@ from app.middleware import (
     value_error_handler
 )
 
+__version__ = "1.0.1"
+
 app = FastAPI(
     title="RAG Backend API",
     description="Production-ready Retrieval-Augmented Generation system with document upload, embeddings, and AI-powered Q&A",
