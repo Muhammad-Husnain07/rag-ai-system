@@ -24,3 +24,5 @@ pytest
 - **Database connection failed**: Check DATABASE_URL in .env
 - **OpenAI API error**: Verify OPENAI_API_KEY is set
 - **Pinecone error**: Ensure PINECONE_API_KEY is correct
+ 
+Note: This is a living codebase. This batch adds several tiny improvements (7 commits) focusing on docs, utilities, and tests. Version is patch-bumped to reflect the changes.

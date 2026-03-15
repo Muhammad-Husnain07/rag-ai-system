@@ -363,3 +363,5 @@ Note: See CHANGELOG_BATCH7.md for the latest tiny-improvements batch details.
 - Added lightweight URL and input validation utilities to support safer inputs.
 - Introduced a minimal in-memory rate limiter utility for quick protection against abuse.
 - Added a new API info endpoint for quick app introspection.
+- Minor docs: add a batch 7 release note summary
+- Version bumped in code for patch release

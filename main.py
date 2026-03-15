@@ -17,7 +17,7 @@ from app.middleware import (
     value_error_handler
 )
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 
 app = FastAPI(
     title="RAG Backend API",
