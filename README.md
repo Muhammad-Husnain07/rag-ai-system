@@ -1,4 +1,5 @@
 # RAG AI System
+Release Summary: Inline release notes are maintained in this README. CHANGELOG.md has been removed; subsequent tiny batches are summarized here.
 
 A production-ready Retrieval-Augmented Generation (RAG) system built with FastAPI backend and React frontend. Upload documents and ask questions to get AI-powered answers based on your document content.
 
