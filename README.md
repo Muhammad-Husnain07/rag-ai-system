@@ -354,6 +354,9 @@ Note: See CHANGELOG_BATCH7.md for the latest tiny-improvements batch details.
 ## Release Notes (tiny improvements batch)
 
 - Released a batch of 7 tiny commits to refine docs, utilities, and tests.
+- Minor improvement: added input sanitization helper (sanitize_input) for safer user input processing.
+- Added tests for input sanitization and utilities.
+- Version bumped with a new patch.
 - See CHANGELOG.md for full details and version history.
 - Version bumped to 1.0.4 in code.
 - Added a batch of small improvements across docs and codebase (10 micro-changes) to refine UX and developer experience.
