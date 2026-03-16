@@ -351,6 +351,10 @@ Muhammad Husnain
 
 Note: See CHANGELOG_BATCH7.md for the latest tiny-improvements batch details.
 
+- Tiny improvement: added normalize_email utility and tests; exported via utils
+- Version bumped to 1.0.5
+- See CHANGELOG.md for details
+
 ## Release Notes (tiny improvements batch)
 
 - Released a batch of 7 tiny commits to refine docs, utilities, and tests.
