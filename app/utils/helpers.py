@@ -12,11 +12,12 @@ def sanitize_filename(filename: str) -> str:
 
 def format_file_size(size_bytes: int) -> str:
     """Format file size in human-readable format."""
+    size = float(size_bytes)
     for unit in ['B', 'KB', 'MB', 'GB']:
-        if size_bytes < 1024.0:
-            return f"{size_bytes:.1f} {unit}"
-        size_bytes /= 1024.0
-    return f"{size_bytes:.1f} TB"
+        if size < 1024.0:
+            return f"{size:.1f} {unit}"
+        size /= 1024.0
+    return f"{size:.1f} TB"
 
 
 def format_datetime(dt: Optional[datetime] = None) -> str:
@@ -110,3 +111,13 @@ def safe_get_env(key: str, default=None):
     """
     import os
     return os.environ.get(key, default)
+
+
+def merge_dicts(a: dict, b: dict) -> dict:
+    """Return a new dict that merges two dictionaries (shallow merge).
+    Values from b override those in a when keys collide.
+    """
+    result = dict(a or {})
+    if b:
+        result.update(b)
+    return result
