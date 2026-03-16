@@ -1,6 +1,5 @@
 """Lightweight API information endpoints."""
-"""Info endpoints micro-docstring for clarity."""
-"""Expose lightweight application information for quick introspection."""
+"""Info endpoints for quick application introspection."""
 """Expose lightweight application information for quick introspection."""
 from fastapi import APIRouter
 
