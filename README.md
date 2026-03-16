@@ -349,7 +349,7 @@ MIT License
 
 Muhammad Husnain
 
-Note: See CHANGELOG_BATCH7.md for the latest tiny-improvements batch details.
+Note: See CHANGELOG_BATCH9.md, CHANGELOG_BATCH10.md, and CHANGELOG_BATCH11.md for the latest tiny-improvements batches.
 
 - Tiny improvement: added normalize_email utility and tests; exported via utils
 - Version bumped to 1.0.5
