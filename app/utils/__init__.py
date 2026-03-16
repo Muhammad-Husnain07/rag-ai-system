@@ -7,10 +7,11 @@ from app.utils.string_utils import slugify, truncate, remove_extra_spaces
 from app.utils.url_utils import is_valid_url, extract_domain
 from app.utils.input_sanitize import sanitize_input
 from app.utils.math_utils import clamp
+from app.utils.int_utils import safe_int_parse
 __all__ = [
     "chunk_text", "extract_text_from_file", "validate_file",
     "is_valid_email", "is_large_file", "get_utc_now",
     "slugify", "truncate", "remove_extra_spaces", "is_valid_url",
-    "extract_domain", "sanitize_input", "clamp"
+    "extract_domain", "sanitize_input", "clamp", "safe_int_parse"
 ]
  
