@@ -104,3 +104,9 @@ def generate_random_string(length: int = 32) -> str:
     import string
     alphabet = string.ascii_letters + string.digits
     return ''.join(secrets.choice(alphabet) for _ in range(length))
+def safe_get_env(key: str, default=None):
+    """Return environment variable or default if not set.
+    This helps centralize safe access to configuration values.
+    """
+    import os
+    return os.environ.get(key, default)
