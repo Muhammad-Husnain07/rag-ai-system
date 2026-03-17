@@ -121,3 +121,10 @@ def merge_dicts(a: dict, b: dict) -> dict:
     if b:
         result.update(b)
     return result
+
+
+def normalize_input(text: Optional[str]) -> str:
+    """Normalize input by sanitizing and lowercasing if present."""
+    from app.utils.input_sanitize import sanitize_input
+    cleaned = sanitize_input(text)
+    return cleaned.lower() if cleaned else ""
