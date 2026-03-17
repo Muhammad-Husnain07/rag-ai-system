@@ -3,6 +3,7 @@
 # Core text & file utils
 from .text_chunker import chunk_text
 from .file_parser import extract_text_from_file, validate_file
+from .file_type_utils import normalize_extension
 
 # Validation & normalization
 from .email_utils import is_valid_email, normalize_email
@@ -21,11 +22,11 @@ from .pagination import create_paginated_response, PaginatedResponse, Pagination
 
 __all__ = [
     "chunk_text", "extract_text_from_file", "validate_file",
-    "is_valid_email", "normalize_email", "is_large_file",
+    "is_valid_email", "normalize_email", "is_large_file", "normalize_extension",
     "bytes_to_human_readable", "human_readable_to_bytes",
     "get_utc_now", "add_days", "add_hours", "is_expired", "time_until_expiry", "format_iso", "parse_iso",
     "slugify", "truncate", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars",
-    "extract_domain", "sanitize_input", "clamp", "safe_int_parse", "sha256_hexdigest",
+    "extract_domain", "sanitize_input", "clamp", "safe_int_parse", "normalize_extension", "sha256_hexdigest",
     "generate_random_string", "generate_random_hex", "generate_api_key",
     "is_valid_url"
 ]
