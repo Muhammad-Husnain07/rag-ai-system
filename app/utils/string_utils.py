@@ -52,3 +52,10 @@ def count_chars(text: str, include_spaces: bool = True) -> int:
     if include_spaces:
         return len(text)
     return len(text.replace(' ', ''))
+
+
+def count_vowels(text: str) -> int:
+    """Count vowels (a, e, i, o, u) in the text, case-insensitive."""
+    if not text:
+        return 0
+    return sum(1 for ch in text.lower() if ch in 'aeiou')
