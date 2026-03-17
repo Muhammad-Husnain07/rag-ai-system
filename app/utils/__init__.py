@@ -11,6 +11,7 @@ from .url_utils import is_valid_url, extract_domain
 from .input_sanitize import sanitize_input
 from .math_utils import clamp
 from .int_utils import safe_int_parse
+from .number_utils import is_numeric
 from .hash_utils import sha256_hexdigest
 from .palindrome import is_palindrome
 from .size_utils import is_large_file, bytes_to_human_readable, human_readable_to_bytes
@@ -29,6 +30,6 @@ __all__ = [
     "slugify", "truncate", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars",
     "extract_domain", "sanitize_input", "clamp", "safe_int_parse", "normalize_extension", "sha256_hexdigest", "is_palindrome",
     "generate_random_string", "generate_random_hex", "generate_api_key",
-    "is_valid_url"
+    "is_valid_url", "is_numeric"
 ]
  
