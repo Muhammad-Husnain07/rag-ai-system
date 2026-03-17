@@ -377,3 +377,4 @@ Note: See CHANGELOG_BATCH9.md, CHANGELOG_BATCH10.md, and CHANGELOG_BATCH11.md fo
 - Minor docs: add a batch 7 release note summary
 - Version bumped in code for patch release (Batch 8)
 - See CHANGELOG.md for details
+- Tiny improvement: added is_safe_url utility for URL safety checks in utils
