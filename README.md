@@ -354,6 +354,7 @@ Note: See CHANGELOG_BATCH9.md, CHANGELOG_BATCH10.md, and CHANGELOG_BATCH11.md fo
 
 - Tiny improvement: added normalize_email utility and tests; exported via utils
 - Version bumped to 1.0.5
+- Added JSON pretty print utility (pretty_json) exported via utils
 - See CHANGELOG.md for details
 
 ## Release Notes (tiny improvements batch)
