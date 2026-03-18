@@ -5,8 +5,7 @@ configure environment-driven values such as database connections, API
 keys, embedding/model settings, rate limits, and feature toggles.
 """
 """Central configuration for the RAG system."""
-"""This module provides the Settings model used across the app to configure
-environment-driven values (DB, embeddings, LLMs, tokens, etc.)."""
+"""Holds the Settings model used by the app to read environment variables."""
 from pydantic_settings import BaseSettings
 from typing import Optional, List
 
@@ -111,7 +110,3 @@ Instructions:
 
 
 settings = Settings()
-
-def get_app_version() -> str:
-    """Return the current application version string."""
-    return "1.0.6"

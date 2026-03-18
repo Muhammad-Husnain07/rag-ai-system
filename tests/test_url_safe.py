@@ -15,3 +15,6 @@ def test_is_safe_url_invalid_scheme():
 
 def test_is_safe_url_missing_domain():
     assert not is_safe_url("https:///path")
+
+def test_is_safe_url_empty():
+    assert not is_safe_url("")

@@ -1,3 +1,4 @@
+"""URL safety helpers."""
 from urllib.parse import urlparse
 from typing import Tuple
 
