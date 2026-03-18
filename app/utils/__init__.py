@@ -33,6 +33,6 @@ __all__ = [
     "slugify", "truncate", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars",
     "extract_domain", "sanitize_input", "clamp", "safe_int_parse", "normalize_extension", "sha256_hexdigest", "is_palindrome", "to_json", "is_safe_url", "pretty_json", 
     "generate_random_string", "generate_random_hex", "generate_api_key",
-    "is_valid_url", "is_numeric"
+    "is_valid_url", "is_numeric", "count_vowels", "ConfigValidator", "count_lines"
 ]
  

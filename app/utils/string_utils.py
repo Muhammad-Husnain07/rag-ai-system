@@ -59,3 +59,10 @@ def count_vowels(text: str) -> int:
     if not text:
         return 0
     return sum(1 for ch in text.lower() if ch in 'aeiou')
+
+
+def count_lines(text: str) -> int:
+    """Count lines in text."""
+    if not text:
+        return 0
+    return len(text.splitlines())

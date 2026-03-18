@@ -17,6 +17,16 @@ def add_hours(date: datetime, hours: int) -> datetime:
     return date + timedelta(hours=hours)
 
 
+def add_minutes(date: datetime, minutes: int) -> datetime:
+    """Add minutes to a date."""
+    return date + timedelta(minutes=minutes)
+
+
+def add_seconds(date: datetime, seconds: int) -> datetime:
+    """Add seconds to a date."""
+    return date + timedelta(seconds=seconds)
+
+
 def is_expired(expiry_date: datetime) -> bool:
     """Check if a date has expired."""
     return datetime.utcnow() > expiry_date
