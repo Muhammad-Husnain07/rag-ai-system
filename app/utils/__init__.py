@@ -25,6 +25,8 @@ from .url_utils import is_valid_url, extract_domain
 from .config_validator import ConfigValidator
 from .pagination import create_paginated_response, PaginatedResponse, PaginationParams
 from .json_pretty import pretty_json
+from .logging import get_logger, log_request
+from .compat import ensure_str
 
 __all__ = [
     "chunk_text", "extract_text_from_file", "validate_file",
@@ -32,8 +34,8 @@ __all__ = [
     "bytes_to_human_readable", "human_readable_to_bytes",
     "get_utc_now", "add_days", "add_hours", "is_expired", "time_until_expiry", "format_iso", "parse_iso",
     "slugify", "truncate", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars",
-    "extract_domain", "sanitize_input", "clamp", "safe_int_parse", "normalize_extension", "sha256_hexdigest", "is_palindrome", "to_json", "is_safe_url", "pretty_json", "flatten_list", 
-    "generate_random_string", "generate_random_hex", "generate_api_key",
-    "is_valid_url", "is_numeric"
+    "extract_domain", "sanitize_input", "clamp", "safe_int_parse", "normalize_extension", "sha256_hexdigest", "is_palindrome", "to_json", "is_safe_url", "pretty_json", "flatten_list", "get_logger", "log_request", "ensure_str", 
+    "generate_random_string", "generate_random_hex", "generate_api_key", "generate_uuid4",
+    "is_valid_url", "is_numeric", "generate_uuid4"
 ]
  
