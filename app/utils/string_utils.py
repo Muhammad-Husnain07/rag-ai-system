@@ -17,6 +17,14 @@ def truncate(text: str, length: int = 100, suffix: str = "...") -> str:
     return text[:length - len(suffix)] + suffix
 
 
+def truncate_words(text: str, word_limit: int = 50, suffix: str = "...") -> str:
+    """Truncate text to specified number of words."""
+    words = text.split()
+    if len(words) <= word_limit:
+        return text
+    return ' '.join(words[:word_limit]) + suffix
+
+
 def remove_extra_spaces(text: str) -> str:
     """Remove extra whitespace from text."""
     return ' '.join(text.split())
