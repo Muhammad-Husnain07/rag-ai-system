@@ -1,4 +1,4 @@
-from app.utils.string_utils import count_lines
+from app.utils.string_utils import count_lines, remove_html_tags
 
 
 def test_count_lines_single():
@@ -15,3 +15,11 @@ def test_count_lines_empty():
 
 def test_count_lines_none():
     assert count_lines(None) == 0
+
+
+def test_remove_html_tags():
+    assert remove_html_tags("<b>hello</b>") == "hello"
+
+
+def test_remove_html_tags_empty():
+    assert remove_html_tags("") == ""

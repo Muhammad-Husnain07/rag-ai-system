@@ -66,3 +66,8 @@ def count_lines(text: str) -> int:
     if not text:
         return 0
     return len(text.splitlines())
+
+
+def remove_html_tags(text: str) -> str:
+    """Remove HTML tags from text."""
+    return re.sub(r'<[^>]+>', '', text)
