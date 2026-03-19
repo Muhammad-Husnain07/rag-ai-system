@@ -16,7 +16,7 @@ from .number_utils import is_numeric, round_to
 from .hash_utils import sha256_hexdigest, md5_hexdigest
 from .palindrome import is_palindrome
 from .json_utils import to_json
-from .size_utils import is_large_file, bytes_to_human_readable, human_readable_to_bytes
+from .size_utils import is_large_file, bytes_to_human_readable, human_readable_to_bytes, bytes_to_kb
 from .datetime_utils import get_utc_now, add_days, add_hours, add_minutes, add_seconds, is_expired, time_until_expiry, format_iso, parse_iso
 from .string_utils import slugify, truncate, truncate_words, remove_extra_spaces, extract_urls, mask_email, count_words, count_chars, count_vowels, count_lines, remove_html_tags
 from .generator import generate_random_string, generate_random_hex, generate_api_key
@@ -28,7 +28,7 @@ from .misc import identity, is_empty
 
 __all__ = [
     "chunk_text", "extract_text_from_file", "validate_file",
-    "is_valid_email", "normalize_email", "is_large_file", "normalize_extension",
+    "is_valid_email", "normalize_email", "is_large_file", "normalize_extension", "bytes_to_kb",
     "bytes_to_human_readable", "human_readable_to_bytes",
     "get_utc_now", "add_days", "add_hours", "add_minutes", "add_seconds", "is_expired", "time_until_expiry", "format_iso", "parse_iso",
     "slugify", "truncate", "truncate_words", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags",
