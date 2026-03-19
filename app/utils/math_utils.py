@@ -12,3 +12,10 @@ def clamp(value: Optional[float], min_val: float, max_val: float) -> Optional[fl
     if value > max_val:
         return max_val
     return value
+
+
+def percent(part: float, total: float) -> float:
+    """Calculate percentage of part relative to total."""
+    if total == 0:
+        return 0.0
+    return (part / total) * 100
