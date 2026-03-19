@@ -7,3 +7,8 @@ def is_numeric(value: str) -> bool:
         return True
     except (ValueError, TypeError):
         return False
+
+
+def round_to(value: float, decimals: int = 2) -> float:
+    """Round a float to the specified number of decimal places."""
+    return round(value, decimals)

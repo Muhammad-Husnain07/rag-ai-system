@@ -12,7 +12,7 @@ from .url_safe import is_safe_url
 from .input_sanitize import sanitize_input
 from .math_utils import clamp, percent
 from .int_utils import safe_int_parse, safe_float_parse
-from .number_utils import is_numeric
+from .number_utils import is_numeric, round_to
 from .hash_utils import sha256_hexdigest, md5_hexdigest
 from .palindrome import is_palindrome
 from .json_utils import to_json
@@ -33,6 +33,6 @@ __all__ = [
     "slugify", "truncate", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags",
     "extract_domain", "sanitize_input", "clamp", "percent", "safe_int_parse", "safe_float_parse", "normalize_extension", "sha256_hexdigest", "md5_hexdigest", "is_palindrome", "to_json", "is_safe_url", "pretty_json", 
     "generate_random_string", "generate_random_hex", "generate_api_key",
-    "is_valid_url", "is_numeric", "count_vowels", "ConfigValidator", "count_lines"
+    "is_valid_url", "is_numeric", "round_to", "count_vowels", "ConfigValidator", "count_lines"
 ]
  
