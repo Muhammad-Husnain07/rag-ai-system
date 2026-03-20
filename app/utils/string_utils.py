@@ -84,3 +84,8 @@ def remove_html_tags(text: str) -> str:
 def reverse_string(text: str) -> str:
     """Reverse a string."""
     return text[::-1]
+
+
+def remove_special_chars(text: str) -> str:
+    """Remove special characters, keep only alphanumeric and spaces."""
+    return re.sub(r'[^A-Za-z0-9\s]', '', text)
