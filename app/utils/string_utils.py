@@ -79,3 +79,8 @@ def count_lines(text: str) -> int:
 def remove_html_tags(text: str) -> str:
     """Remove HTML tags from text."""
     return re.sub(r'<[^>]+>', '', text)
+
+
+def reverse_string(text: str) -> str:
+    """Reverse a string."""
+    return text[::-1]

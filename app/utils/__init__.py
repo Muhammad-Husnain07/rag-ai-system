@@ -18,7 +18,7 @@ from .palindrome import is_palindrome
 from .json_utils import to_json
 from .size_utils import is_large_file, bytes_to_human_readable, human_readable_to_bytes, bytes_to_kb
 from .datetime_utils import get_utc_now, add_days, add_hours, add_minutes, add_seconds, add_months, is_expired, time_until_expiry, format_iso, parse_iso
-from .string_utils import slugify, truncate, truncate_words, remove_extra_spaces, extract_urls, mask_email, count_words, count_chars, count_vowels, count_lines, remove_html_tags
+from .string_utils import slugify, truncate, truncate_words, remove_extra_spaces, extract_urls, mask_email, count_words, count_chars, count_vowels, count_lines, remove_html_tags, reverse_string
 from .generator import generate_random_string, generate_random_hex, generate_api_key, generate_uuid
 from .url_utils import is_valid_url, extract_domain
 from .config_validator import ConfigValidator
@@ -31,7 +31,7 @@ __all__ = [
     "is_valid_email", "normalize_email", "is_large_file", "normalize_extension", "bytes_to_kb",
     "bytes_to_human_readable", "human_readable_to_bytes",
     "get_utc_now", "add_days", "add_hours", "add_minutes", "add_seconds", "add_months", "is_expired", "time_until_expiry", "format_iso", "parse_iso",
-    "slugify", "truncate", "truncate_words", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags",
+    "slugify", "truncate", "truncate_words", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags", "reverse_string",
     "extract_domain", "sanitize_input", "clamp", "percent", "safe_int_parse", "safe_float_parse", "is_odd", "is_even", "normalize_extension", "sha256_hexdigest", "md5_hexdigest", "is_palindrome", "to_json", "is_safe_url", "pretty_json", 
     "generate_random_string", "generate_random_hex", "generate_api_key", "generate_uuid",
     "is_valid_url", "is_numeric", "round_to", "count_vowels", "ConfigValidator", "count_lines", "is_empty"
