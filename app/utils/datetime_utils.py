@@ -57,3 +57,8 @@ def parse_iso(date_str: str) -> Optional[datetime]:
         return datetime.fromisoformat(date_str)
     except (ValueError, AttributeError):
         return None
+
+
+def days_between(start: datetime, end: datetime) -> int:
+    """Return the number of days between two dates."""
+    return abs((end - start).days)
