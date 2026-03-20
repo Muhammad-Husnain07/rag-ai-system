@@ -106,3 +106,9 @@ def get_mime_type(file_extension: str) -> str:
         ".doc": "application/msword"
     }
     return mime_types.get(file_extension.lower(), "application/octet-stream")
+
+
+def get_file_extension(filename: str) -> str:
+    """Extract and return file extension (e.g. '.pdf')."""
+    _, ext = os.path.splitext(filename)
+    return ext.lower()
