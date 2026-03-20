@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from typing import Optional
+from dateutil.relativedelta import relativedelta
 
 
 def get_utc_now() -> datetime:
@@ -25,6 +26,11 @@ def add_minutes(date: datetime, minutes: int) -> datetime:
 def add_seconds(date: datetime, seconds: int) -> datetime:
     """Add seconds to a date."""
     return date + timedelta(seconds=seconds)
+
+
+def add_months(date: datetime, months: int) -> datetime:
+    """Add months to a date."""
+    return date + relativedelta(months=months)
 
 
 def is_expired(expiry_date: datetime) -> bool:
