@@ -1,5 +1,6 @@
 import secrets
 import string
+import uuid
 
 
 def generate_random_string(length: int = 32) -> str:
@@ -16,3 +17,8 @@ def generate_random_hex(length: int = 32) -> str:
 def generate_api_key() -> str:
     """Generate an API key format."""
     return f"rag_{generate_random_string(40)}"
+
+
+def generate_uuid() -> str:
+    """Generate a random UUID4 string."""
+    return str(uuid.uuid4())
