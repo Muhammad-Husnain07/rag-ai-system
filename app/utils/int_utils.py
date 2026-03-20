@@ -23,3 +23,13 @@ def safe_float_parse(value: Optional[str], default: float = 0.0) -> float:
         return float(value)
     except (ValueError, TypeError):
         return default
+
+
+def is_odd(value: int) -> bool:
+    """Check if an integer is odd."""
+    return value % 2 != 0
+
+
+def is_even(value: int) -> bool:
+    """Check if an integer is even."""
+    return value % 2 == 0
