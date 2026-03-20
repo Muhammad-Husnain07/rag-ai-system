@@ -9,3 +9,14 @@ def is_empty(value) -> bool:
     if isinstance(value, (str, list, dict, set, tuple)):
         return len(value) == 0
     return False
+
+
+def flatten_list(nested_list: list) -> list:
+    """Flatten a nested list into a single list."""
+    result = []
+    for item in nested_list:
+        if isinstance(item, list):
+            result.extend(flatten_list(item))
+        else:
+            result.append(item)
+    return result
