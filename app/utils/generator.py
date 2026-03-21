@@ -22,3 +22,10 @@ def generate_api_key() -> str:
 def generate_uuid() -> str:
     """Generate a random UUID4 string."""
     return str(uuid.uuid4())
+
+
+def generate_batch_id() -> str:
+    """Generate a batch ID with timestamp prefix."""
+    from datetime import datetime
+    timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+    return f"batch_{timestamp}_{generate_random_string(8)}"
