@@ -67,3 +67,8 @@ def days_between(start: datetime, end: datetime) -> int:
 def is_weekend(date: datetime) -> bool:
     """Check if the given date is a weekend (Saturday or Sunday)."""
     return date.weekday() in (5, 6)
+
+
+def is_weekday(date: datetime) -> bool:
+    """Check if the given date is a weekday (Monday-Friday)."""
+    return date.weekday() not in (5, 6)
