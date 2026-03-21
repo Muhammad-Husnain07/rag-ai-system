@@ -94,3 +94,8 @@ def remove_special_chars(text: str) -> str:
 def starts_with(text: str, prefix: str) -> bool:
     """Check if text starts with the given prefix."""
     return text.startswith(prefix)
+
+
+def ends_with(text: str, suffix: str) -> bool:
+    """Check if text ends with the given suffix."""
+    return text.endswith(suffix)
