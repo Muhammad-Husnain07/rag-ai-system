@@ -62,3 +62,8 @@ def parse_iso(date_str: str) -> Optional[datetime]:
 def days_between(start: datetime, end: datetime) -> int:
     """Return the number of days between two dates."""
     return abs((end - start).days)
+
+
+def is_weekend(date: datetime) -> bool:
+    """Check if the given date is a weekend (Saturday or Sunday)."""
+    return date.weekday() in (5, 6)
