@@ -19,3 +19,9 @@ def extract_domain(url: str) -> str | None:
     """Extract domain from URL."""
     match = re.search(r'https?://([^/]+)', url)
     return match.group(1) if match else None
+
+
+def extract_path(url: str) -> str:
+    """Extract path from URL."""
+    from urllib.parse import urlparse
+    return urlparse(url).path
