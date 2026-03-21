@@ -89,3 +89,8 @@ def reverse_string(text: str) -> str:
 def remove_special_chars(text: str) -> str:
     """Remove special characters, keep only alphanumeric and spaces."""
     return re.sub(r'[^A-Za-z0-9\s]', '', text)
+
+
+def starts_with(text: str, prefix: str) -> bool:
+    """Check if text starts with the given prefix."""
+    return text.startswith(prefix)
