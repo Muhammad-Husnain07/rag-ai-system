@@ -99,3 +99,8 @@ def starts_with(text: str, prefix: str) -> bool:
 def ends_with(text: str, suffix: str) -> bool:
     """Check if text ends with the given suffix."""
     return text.endswith(suffix)
+
+
+def contains_substring(text: str, substring: str) -> bool:
+    """Check if text contains the given substring."""
+    return substring in text
