@@ -32,3 +32,8 @@ def is_large_file(size_bytes: int, threshold_mb: int = 10) -> bool:
 def bytes_to_kb(size_bytes: int) -> float:
     """Convert bytes to kilobytes."""
     return size_bytes / 1024.0
+
+
+def bytes_to_mb(size_bytes: int) -> float:
+    """Convert bytes to megabytes."""
+    return size_bytes / (1024.0 * 1024.0)
