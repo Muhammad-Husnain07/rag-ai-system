@@ -112,3 +112,9 @@ def get_file_extension(filename: str) -> str:
     """Extract and return file extension (e.g. '.pdf')."""
     _, ext = os.path.splitext(filename)
     return ext.lower()
+
+
+def get_file_name(filename: str) -> str:
+    """Extract file name without extension."""
+    name, _ = os.path.splitext(filename)
+    return os.path.basename(name)

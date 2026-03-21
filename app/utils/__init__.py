@@ -2,7 +2,7 @@
 
 # Core text & file utils
 from .text_chunker import chunk_text
-from .file_parser import extract_text_from_file, validate_file, get_file_extension
+from .file_parser import extract_text_from_file, validate_file, get_file_extension, get_file_name
 from .file_type_utils import normalize_extension
 
 # Validation & normalization
@@ -26,7 +26,7 @@ from .json_pretty import pretty_json
 from .misc import identity, is_empty, flatten_list
 
 __all__ = [
-    "chunk_text", "extract_text_from_file", "validate_file", "get_file_extension",
+    "chunk_text", "extract_text_from_file", "validate_file", "get_file_extension", "get_file_name",
     "is_valid_email", "normalize_email", "extract_username", "is_large_file", "normalize_extension", "bytes_to_kb", "bytes_to_mb",
     "bytes_to_human_readable", "human_readable_to_bytes",
     "get_utc_now", "add_days", "add_hours", "add_minutes", "add_seconds", "add_months", "is_expired", "time_until_expiry", "format_iso", "parse_iso", "days_between", "is_weekend",
