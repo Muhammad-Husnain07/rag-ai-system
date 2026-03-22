@@ -77,3 +77,11 @@ def is_weekday(date: datetime) -> bool:
 def format_date(date: datetime, format_str: str = "%Y-%m-%d") -> str:
     """Format datetime to string with custom format."""
     return date.strftime(format_str)
+
+
+def seconds_to_hms(seconds: int) -> str:
+    """Convert seconds to hours:minutes:seconds format."""
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    secs = seconds % 60
+    return f"{hours:02d}:{minutes:02d}:{secs:02d}"
