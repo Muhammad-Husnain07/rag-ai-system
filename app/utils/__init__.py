@@ -13,7 +13,7 @@ from .input_sanitize import sanitize_input
 from .math_utils import clamp, percent
 from .int_utils import safe_int_parse, safe_float_parse, is_odd, is_even
 from .number_utils import is_numeric, round_to
-from .hash_utils import sha256_hexdigest, md5_hexdigest
+from .hash_utils import sha256_hexdigest, md5_hexdigest, sha1_hexdigest
 from .palindrome import is_palindrome
 from .json_utils import to_json
 from .size_utils import is_large_file, bytes_to_human_readable, human_readable_to_bytes, bytes_to_kb, bytes_to_mb
@@ -32,7 +32,7 @@ __all__ = [
     "bytes_to_human_readable", "human_readable_to_bytes",
     "get_utc_now", "add_days", "add_hours", "add_minutes", "add_seconds", "add_months", "is_expired", "time_until_expiry", "format_iso", "parse_iso", "days_between", "is_weekend", "is_weekday",
     "slugify", "truncate", "truncate_words", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags", "reverse_string", "remove_special_chars", "starts_with", "ends_with", "contains_substring",
-    "extract_domain", "sanitize_input", "clamp", "percent", "safe_int_parse", "safe_float_parse", "is_odd", "is_even", "normalize_extension", "sha256_hexdigest", "md5_hexdigest", "is_palindrome", "to_json", "is_safe_url", "pretty_json", 
+    "extract_domain", "sanitize_input", "clamp", "percent", "safe_int_parse", "safe_float_parse", "is_odd", "is_even", "normalize_extension", "sha256_hexdigest", "md5_hexdigest", "sha1_hexdigest", "is_palindrome", "to_json", "is_safe_url", "pretty_json", 
     "generate_random_string", "generate_random_hex", "generate_api_key", "generate_uuid", "generate_batch_id",
     "is_valid_url", "extract_domain", "extract_path", "is_numeric", "round_to", "count_vowels", "ConfigValidator", "count_lines", "is_empty", "flatten_list", "ensure_int"
 ]
