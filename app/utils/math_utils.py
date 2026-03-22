@@ -19,3 +19,10 @@ def percent(part: float, total: float) -> float:
     if total == 0:
         return 0.0
     return (part / total) * 100
+
+
+def average(numbers: list) -> float:
+    """Calculate average of a list of numbers."""
+    if not numbers:
+        return 0.0
+    return sum(numbers) / len(numbers)
