@@ -72,3 +72,8 @@ def is_weekend(date: datetime) -> bool:
 def is_weekday(date: datetime) -> bool:
     """Check if the given date is a weekday (Monday-Friday)."""
     return date.weekday() not in (5, 6)
+
+
+def format_date(date: datetime, format_str: str = "%Y-%m-%d") -> str:
+    """Format datetime to string with custom format."""
+    return date.strftime(format_str)
