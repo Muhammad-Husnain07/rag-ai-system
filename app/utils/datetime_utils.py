@@ -33,6 +33,11 @@ def add_months(date: datetime, months: int) -> datetime:
     return date + relativedelta(months=months)
 
 
+def add_weeks(date: datetime, weeks: int) -> datetime:
+    """Add weeks to a date."""
+    return date + timedelta(weeks=weeks)
+
+
 def is_expired(expiry_date: datetime) -> bool:
     """Check if a date has expired."""
     return datetime.utcnow() > expiry_date
