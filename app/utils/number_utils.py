@@ -20,3 +20,11 @@ def is_positive(value: float) -> bool:
         return float(value) > 0
     except (TypeError, ValueError):
         return False
+
+
+def is_negative(value: float) -> bool:
+    """Return True if value is negative."""
+    try:
+        return float(value) < 0
+    except (TypeError, ValueError):
+        return False
