@@ -104,3 +104,10 @@ def ends_with(text: str, suffix: str) -> bool:
 def contains_substring(text: str, substring: str) -> bool:
     """Check if text contains the given substring."""
     return substring in text
+
+
+def to_snake_case(text: str) -> str:
+    """Convert text to snake_case."""
+    text = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', text)
+    text = re.sub(r'([a-z\d])([A-Z])', r'\1_\2', text)
+    return text.lower().replace(' ', '_').replace('-', '_')
