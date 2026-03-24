@@ -26,3 +26,10 @@ def average(numbers: list) -> float:
     if not numbers:
         return 0.0
     return sum(numbers) / len(numbers)
+
+
+def safe_divide(numerator: float, denominator: float, default: float = 0.0) -> float:
+    """Divide two numbers safely, returning default if denominator is zero."""
+    if denominator == 0:
+        return default
+    return numerator / denominator
