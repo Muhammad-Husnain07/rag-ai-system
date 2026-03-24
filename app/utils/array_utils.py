@@ -16,3 +16,8 @@ def uniq_list(items: list) -> list:
             seen.add(item)
             result.append(item)
     return result
+
+
+def chunk_list(items: list, chunk_size: int) -> list:
+    """Split a list into chunks of specified size."""
+    return [items[i:i + chunk_size] for i in range(0, len(items), chunk_size)]
