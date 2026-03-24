@@ -111,3 +111,11 @@ def to_snake_case(text: str) -> str:
     text = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', text)
     text = re.sub(r'([a-z\d])([A-Z])', r'\1_\2', text)
     return text.lower().replace(' ', '_').replace('-', '_')
+
+
+def to_camel_case(text: str) -> str:
+    """Convert text to camelCase."""
+    words = re.sub(r'[^a-zA-Z0-9]', ' ', text).split()
+    if not words:
+        return text
+    return words[0].lower() + ''.join(word.capitalize() for word in words[1:])
