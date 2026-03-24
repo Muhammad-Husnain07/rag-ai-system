@@ -98,3 +98,8 @@ def parse_date(date_str: str, format_str: str = "%Y-%m-%d") -> Optional[datetime
         return datetime.strptime(date_str, format_str)
     except (ValueError, AttributeError):
         return None
+
+
+def get_quarter(date: datetime) -> int:
+    """Return the quarter (1-4) for the given date."""
+    return (date.month - 1) // 3 + 1
