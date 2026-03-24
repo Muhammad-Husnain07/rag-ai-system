@@ -25,3 +25,9 @@ def extract_path(url: str) -> str:
     """Extract path from URL."""
     from urllib.parse import urlparse
     return urlparse(url).path
+
+
+def extract_query_params(url: str) -> dict:
+    """Extract query parameters from URL as a dictionary."""
+    from urllib.parse import urlparse, parse_qs
+    return dict(parse_qs(urlparse(url).query))
