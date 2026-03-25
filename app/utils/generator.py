@@ -29,3 +29,8 @@ def generate_batch_id() -> str:
     from datetime import datetime
     timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
     return f"batch_{timestamp}_{generate_random_string(8)}"
+
+
+def generate_token(length: int = 32) -> str:
+    """Generate a secure random token."""
+    return secrets.token_urlsafe(length)
