@@ -22,3 +22,12 @@ def extract_username(email: str) -> str | None:
     if '@' in email:
         return email.split('@')[0]
     return None
+
+
+def extract_domain_from_email(email: str) -> str | None:
+    """Extract domain from email address."""
+    if '@' in email:
+        parts = email.split('@')
+        if len(parts) == 2:
+            return parts[1]
+    return None
