@@ -10,7 +10,7 @@ from .email_utils import is_valid_email, normalize_email, extract_username, extr
 from .url_utils import is_valid_url, extract_domain, extract_path, extract_query_params
 from .url_safe import is_safe_url
 from .input_sanitize import sanitize_input
-from .math_utils import clamp, percent, average, safe_divide
+from .math_utils import clamp, percent, average, safe_divide, power
 from .int_utils import safe_int_parse, safe_float_parse, is_odd, is_even
 from .number_utils import is_numeric, round_to, is_positive, is_negative
 from .hash_utils import sha256_hexdigest, md5_hexdigest, sha1_hexdigest
@@ -34,7 +34,7 @@ __all__ = [
     "bytes_to_human_readable", "human_readable_to_bytes",
     "get_utc_now", "add_days", "add_hours", "add_minutes", "add_seconds", "add_months", "add_weeks", "is_expired", "time_until_expiry", "format_iso", "parse_iso", "days_between", "is_weekend", "is_weekday", "format_date", "seconds_to_hms", "parse_date", "get_quarter",
     "slugify", "truncate", "truncate_words", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags", "reverse_string", "remove_special_chars", "starts_with", "ends_with", "contains_substring", "to_snake_case", "to_camel_case",
-    "extract_domain", "sanitize_input", "clamp", "percent", "average", "safe_divide", "safe_int_parse", "safe_float_parse", "is_odd", "is_even", "normalize_extension", "sha256_hexdigest", "md5_hexdigest", "sha1_hexdigest", "is_palindrome", "to_json", "parse_json", "is_safe_url", "pretty_json", 
+    "extract_domain", "sanitize_input", "clamp", "percent", "average", "safe_divide", "power", "safe_int_parse", "safe_float_parse", "is_odd", "is_even", "normalize_extension", "sha256_hexdigest", "md5_hexdigest", "sha1_hexdigest", "is_palindrome", "to_json", "parse_json", "is_safe_url", "pretty_json", 
     "generate_random_string", "generate_random_hex", "generate_api_key", "generate_uuid", "generate_batch_id", "generate_token",
     "is_valid_url", "extract_domain", "extract_path", "extract_query_params", "is_numeric", "round_to", "is_positive", "is_negative", "count_vowels", "ConfigValidator", "count_lines", "is_empty", "flatten_list", "ensure_int", "ensure_bool", "sum_list", "uniq_list", "chunk_list", "format_number", "format_currency"
 ]

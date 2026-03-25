@@ -33,3 +33,8 @@ def safe_divide(numerator: float, denominator: float, default: float = 0.0) -> f
     if denominator == 0:
         return default
     return numerator / denominator
+
+
+def power(base: float, exponent: float) -> float:
+    """Calculate base raised to the power of exponent."""
+    return base ** exponent
