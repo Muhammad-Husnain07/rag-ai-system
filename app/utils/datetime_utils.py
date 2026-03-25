@@ -103,3 +103,27 @@ def parse_date(date_str: str, format_str: str = "%Y-%m-%d") -> Optional[datetime
 def get_quarter(date: datetime) -> int:
     """Return the quarter (1-4) for the given date."""
     return (date.month - 1) // 3 + 1
+
+
+def is_leap_year(year: int) -> bool:
+    """Check if a year is a leap year."""
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+
+def add_years(date: datetime, years: int) -> datetime:
+    """Add years to a date."""
+    return date + relativedelta(years=years)
+
+
+def get_days_in_month(year: int, month: int) -> int:
+    """Get number of days in a given month."""
+    if month == 12:
+        next_month = datetime(year + 1, 1, 1)
+    else:
+        next_month = datetime(year, month + 1, 1)
+    return (next_month - timedelta(days=1)).day
+
+
+def is_same_day(date1: datetime, date2: datetime) -> bool:
+    """Check if two dates are the same day."""
+    return date1.year == date2.year and date1.month == date2.month and date1.day == date2.day
