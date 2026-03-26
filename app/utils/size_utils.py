@@ -37,3 +37,19 @@ def bytes_to_kb(size_bytes: int) -> float:
 def bytes_to_mb(size_bytes: int) -> float:
     """Convert bytes to megabytes."""
     return size_bytes / (1024.0 * 1024.0)
+
+
+def format_bytes(size_bytes: int, decimals: int = 2) -> str:
+    """Format bytes with appropriate unit suffix."""
+    if size_bytes == 0:
+        return "0 B"
+    
+    units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+    unit_index = 0
+    size = float(size_bytes)
+    
+    while size >= 1024.0 and unit_index < len(units) - 1:
+        size /= 1024.0
+        unit_index += 1
+    
+    return f"{size:.{decimals}f} {units[unit_index]}"
