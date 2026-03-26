@@ -24,3 +24,16 @@ def ensure_bool(value) -> bool:
     if isinstance(value, str):
         return value.lower() in ("true", "1", "yes", "on")
     return bool(value)
+
+
+def parse_bool(value) -> bool:
+    """Parse string to boolean, returns None for invalid values."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        lower = value.lower().strip()
+        if lower in ("true", "1", "yes", "on"):
+            return True
+        if lower in ("false", "0", "no", "off", ""):
+            return False
+    return None
