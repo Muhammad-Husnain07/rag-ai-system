@@ -119,3 +119,18 @@ def to_camel_case(text: str) -> str:
     if not words:
         return text
     return words[0].lower() + ''.join(word.capitalize() for word in words[1:])
+
+
+def to_upper(text: str) -> str:
+    """Convert text to uppercase."""
+    return text.upper()
+
+
+def to_lower(text: str) -> str:
+    """Convert text to lowercase."""
+    return text.lower()
+
+
+def extract_numbers(text: str) -> list:
+    """Extract all numbers from a string."""
+    return [int(m) for m in re.findall(r'-?\d+', text)]
