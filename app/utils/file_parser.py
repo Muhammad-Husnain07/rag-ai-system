@@ -118,3 +118,11 @@ def get_file_name(filename: str) -> str:
     """Extract file name without extension."""
     name, _ = os.path.splitext(filename)
     return os.path.basename(name)
+
+
+def get_file_size(file_path: str) -> int:
+    """Get file size in bytes. Returns 0 if file doesn't exist."""
+    try:
+        return os.path.getsize(file_path)
+    except (OSError, FileNotFoundError):
+        return 0

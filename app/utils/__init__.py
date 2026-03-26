@@ -2,7 +2,7 @@
 
 # Core text & file utils
 from .text_chunker import chunk_text
-from .file_parser import extract_text_from_file, validate_file, get_file_extension, get_file_name
+from .file_parser import extract_text_from_file, validate_file, get_file_extension, get_file_name, get_file_size
 from .file_type_utils import normalize_extension, is_image_file, is_video_file, is_audio_file
 
 # Validation & normalization
@@ -29,7 +29,7 @@ from .array_utils import is_none, sum_list, uniq_list, chunk_list, min_list, max
 from .formatting import format_number, format_currency, format_phone
 
 __all__ = [
-    "chunk_text", "extract_text_from_file", "validate_file", "get_file_extension", "get_file_name",
+    "chunk_text", "extract_text_from_file", "validate_file", "get_file_extension", "get_file_name", "get_file_size",
     "is_valid_email", "normalize_email", "extract_username", "extract_domain_from_email", "is_large_file", "normalize_extension", "is_image_file", "is_video_file", "is_audio_file", "bytes_to_kb", "bytes_to_mb",
     "bytes_to_human_readable", "human_readable_to_bytes", "format_bytes",
     "get_utc_now", "add_days", "add_hours", "add_minutes", "add_seconds", "add_months", "add_weeks", "add_years", "is_expired", "time_until_expiry", "format_iso", "parse_iso", "days_between", "is_weekend", "is_weekday", "format_date", "seconds_to_hms", "parse_date", "get_quarter", "is_leap_year", "get_days_in_month", "is_same_day",
