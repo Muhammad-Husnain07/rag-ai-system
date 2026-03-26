@@ -20,3 +20,9 @@ def flatten_list(nested_list: list) -> list:
         else:
             result.append(item)
     return result
+
+
+def get_size(obj) -> int:
+    """Get size of an object in bytes (like sys.getsizeof)."""
+    import sys
+    return sys.getsizeof(obj)
