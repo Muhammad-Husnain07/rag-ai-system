@@ -21,3 +21,17 @@ def uniq_list(items: list) -> list:
 def chunk_list(items: list, chunk_size: int) -> list:
     """Split a list into chunks of specified size."""
     return [items[i:i + chunk_size] for i in range(0, len(items), chunk_size)]
+
+
+def min_list(numbers: list) -> float:
+    """Return minimum value in a list."""
+    if not numbers:
+        return 0
+    return min(numbers)
+
+
+def max_list(numbers: list) -> float:
+    """Return maximum value in a list."""
+    if not numbers:
+        return 0
+    return max(numbers)

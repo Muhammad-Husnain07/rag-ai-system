@@ -25,7 +25,7 @@ from .pagination import create_paginated_response, PaginatedResponse, Pagination
 from .json_pretty import pretty_json
 from .misc import identity, is_empty, flatten_list, get_size
 from .compat import ensure_str, ensure_int, ensure_bool
-from .array_utils import is_none, sum_list, uniq_list, chunk_list
+from .array_utils import is_none, sum_list, uniq_list, chunk_list, min_list, max_list
 from .formatting import format_number, format_currency, format_phone
 
 __all__ = [
@@ -36,6 +36,6 @@ __all__ = [
     "slugify", "truncate", "truncate_words", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags", "reverse_string", "remove_special_chars", "starts_with", "ends_with", "contains_substring", "to_snake_case", "to_camel_case", "to_upper", "to_lower", "extract_numbers",
     "extract_domain", "sanitize_input", "clamp", "percent", "average", "safe_divide", "power", "safe_int_parse", "safe_float_parse", "is_odd", "is_even", "normalize_extension", "sha256_hexdigest", "md5_hexdigest", "sha1_hexdigest", "is_palindrome", "to_json", "parse_json", "is_safe_url", "pretty_json", 
     "generate_random_string", "generate_random_hex", "generate_api_key", "generate_uuid", "generate_batch_id", "generate_token",
-    "is_valid_url", "extract_domain", "extract_path", "extract_query_params", "is_numeric", "round_to", "is_positive", "is_negative", "count_vowels", "ConfigValidator", "count_lines", "is_empty", "flatten_list", "get_size", "ensure_int", "ensure_bool", "sum_list", "uniq_list", "chunk_list", "format_number", "format_currency", "format_phone"
+    "is_valid_url", "extract_domain", "extract_path", "extract_query_params", "is_numeric", "round_to", "is_positive", "is_negative", "count_vowels", "ConfigValidator", "count_lines", "is_empty", "flatten_list", "get_size", "ensure_int", "ensure_bool", "sum_list", "uniq_list", "chunk_list", "min_list", "max_list", "format_number", "format_currency", "format_phone"
 ]
  
