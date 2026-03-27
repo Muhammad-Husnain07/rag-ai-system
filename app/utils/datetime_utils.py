@@ -127,3 +127,53 @@ def get_days_in_month(year: int, month: int) -> int:
 def is_same_day(date1: datetime, date2: datetime) -> bool:
     """Check if two dates are the same day."""
     return date1.year == date2.year and date1.month == date2.month and date1.day == date2.day
+
+
+def get_age(birthdate: datetime) -> int:
+    """Calculate age from birthdate."""
+    today = datetime.utcnow()
+    age = today.year - birthdate.year
+    if (today.month, today.day) < (birthdate.month, birthdate.day):
+        age -= 1
+    return age
+
+
+def format_duration(seconds: int) -> str:
+    """Format seconds into human readable duration."""
+    if seconds < 60:
+        return f"{seconds}s"
+    minutes = seconds // 60
+    if minutes < 60:
+        return f"{minutes}m"
+    hours = minutes // 60
+    minutes = minutes % 60
+    if hours < 24:
+        return f"{hours}h {minutes}m"
+    days = hours // 24
+    hours = hours % 24
+    return f"{days}d {hours}h"
+
+
+def time_ago(dt: datetime) -> str:
+    """Return relative time string like '5 minutes ago'."""
+    now = datetime.utcnow()
+    diff = now - dt
+    seconds = int(diff.total_seconds())
+    
+    if seconds < 60:
+        return "just now"
+    elif seconds < 3600:
+        minutes = seconds // 60
+        return f"{minutes} minute{'s' if minutes != 1 else ''} ago"
+    elif seconds < 86400:
+        hours = seconds // 3600
+        return f"{hours} hour{'s' if hours != 1 else ''} ago"
+    elif seconds < 2592000:
+        days = seconds // 86400
+        return f"{days} day{'s' if days != 1 else ''} ago"
+    elif seconds < 31536000:
+        months = seconds // 2592000
+        return f"{months} month{'s' if months != 1 else ''} ago"
+    else:
+        years = seconds // 31536000
+        return f"{years} year{'s' if years != 1 else ''} ago"
