@@ -37,3 +37,29 @@ def parse_bool(value) -> bool:
         if lower in ("false", "0", "no", "off", ""):
             return False
     return None
+
+
+def ensure_float(value, default: float = 0.0) -> float:
+    """Ensure value is a float, return default if not possible."""
+    if isinstance(value, float):
+        return value
+    if isinstance(value, int):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value)
+        except ValueError:
+            return default
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def ensure_list(value, default=None) -> list:
+    """Ensure value is a list, return default if not possible."""
+    if isinstance(value, list):
+        return value
+    if value is None:
+        return default if default is not None else []
+    return [value]
