@@ -28,3 +28,19 @@ def is_negative(value: float) -> bool:
         return float(value) < 0
     except (TypeError, ValueError):
         return False
+
+
+def is_zero(value: float) -> bool:
+    """Return True if value is zero."""
+    try:
+        return float(value) == 0
+    except (TypeError, ValueError):
+        return False
+
+
+def in_range(value: float, min_val: float, max_val: float) -> bool:
+    """Return True if value is within range [min_val, max_val]."""
+    try:
+        return min_val <= float(value) <= max_val
+    except (TypeError, ValueError):
+        return False

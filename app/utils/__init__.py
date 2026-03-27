@@ -12,7 +12,7 @@ from .url_safe import is_safe_url
 from .input_sanitize import sanitize_input
 from .math_utils import clamp, percent, average, safe_divide, power, factorial, gcd, lcm
 from .int_utils import safe_int_parse, safe_float_parse, is_odd, is_even
-from .number_utils import is_numeric, round_to, is_positive, is_negative
+from .number_utils import is_numeric, round_to, is_positive, is_negative, is_zero, in_range
 from .hash_utils import sha256_hexdigest, md5_hexdigest, sha1_hexdigest
 from .palindrome import is_palindrome
 from .json_utils import to_json, parse_json
@@ -36,6 +36,6 @@ __all__ = [
     "slugify", "truncate", "truncate_words", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags", "reverse_string", "remove_special_chars", "starts_with", "ends_with", "contains_substring", "to_snake_case", "to_camel_case", "to_upper", "to_lower", "extract_numbers", "repeat_text", "join_with", "strip_punctuation",
     "extract_domain", "sanitize_input", "clamp", "percent", "average", "safe_divide", "power", "factorial", "gcd", "lcm", "safe_int_parse", "safe_float_parse", "is_odd", "is_even", "normalize_extension", "sha256_hexdigest", "md5_hexdigest", "sha1_hexdigest", "is_palindrome", "to_json", "parse_json", "is_safe_url", "pretty_json", 
     "generate_random_string", "generate_random_hex", "generate_api_key", "generate_uuid", "generate_batch_id", "generate_token",
-    "is_valid_url", "extract_domain", "extract_path", "extract_query_params", "build_url", "encode_params", "is_numeric", "round_to", "is_positive", "is_negative", "count_vowels", "ConfigValidator", "count_lines", "is_empty", "flatten_list", "get_size", "ensure_int", "ensure_bool", "parse_bool", "sum_list", "uniq_list", "chunk_list", "min_list", "max_list", "flatten_list", "split_list", "find_duplicates", "format_number", "format_currency", "format_phone", "format_percentage", "format_ordinal"
+    "is_valid_url", "extract_domain", "extract_path", "extract_query_params", "build_url", "encode_params", "is_numeric", "round_to", "is_positive", "is_negative", "is_zero", "in_range", "count_vowels", "ConfigValidator", "count_lines", "is_empty", "flatten_list", "get_size", "ensure_int", "ensure_bool", "parse_bool", "sum_list", "uniq_list", "chunk_list", "min_list", "max_list", "flatten_list", "split_list", "find_duplicates", "format_number", "format_currency", "format_phone", "format_percentage", "format_ordinal"
 ]
  
