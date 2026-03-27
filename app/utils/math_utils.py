@@ -38,3 +38,27 @@ def safe_divide(numerator: float, denominator: float, default: float = 0.0) -> f
 def power(base: float, exponent: float) -> float:
     """Calculate base raised to the power of exponent."""
     return base ** exponent
+
+
+def factorial(n: int) -> int:
+    """Calculate factorial of a non-negative integer."""
+    if n < 0:
+        raise ValueError("Factorial not defined for negative numbers")
+    if n <= 1:
+        return 1
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+
+
+def gcd(a: int, b: int) -> int:
+    """Calculate greatest common divisor of two integers."""
+    while b:
+        a, b = b, a % b
+    return a
+
+
+def lcm(a: int, b: int) -> int:
+    """Calculate least common multiple of two integers."""
+    return abs(a * b) // gcd(a, b) if a and b else 0
