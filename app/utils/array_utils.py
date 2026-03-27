@@ -35,3 +35,40 @@ def max_list(numbers: list) -> float:
     if not numbers:
         return 0
     return max(numbers)
+
+
+def flatten_list(nested: list) -> list:
+    """Flatten a nested list into a single level."""
+    result = []
+    for item in nested:
+        if isinstance(item, list):
+            result.extend(flatten_list(item))
+        else:
+            result.append(item)
+    return result
+
+
+def split_list(items: list, parts: int) -> list:
+    """Split a list into approximately equal parts."""
+    if parts <= 0:
+        return []
+    chunk_size = len(items) // parts
+    remainder = len(items) % parts
+    result = []
+    idx = 0
+    for i in range(parts):
+        size = chunk_size + (1 if i < remainder else 0)
+        result.append(items[idx:idx + size])
+        idx += size
+    return result
+
+
+def find_duplicates(items: list) -> list:
+    """Find duplicate items in a list."""
+    seen = set()
+    duplicates = set()
+    for item in items:
+        if item in seen:
+            duplicates.add(item)
+        seen.add(item)
+    return list(duplicates)
