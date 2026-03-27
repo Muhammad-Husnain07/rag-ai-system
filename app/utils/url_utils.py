@@ -31,3 +31,18 @@ def extract_query_params(url: str) -> dict:
     """Extract query parameters from URL as a dictionary."""
     from urllib.parse import urlparse, parse_qs
     return dict(parse_qs(urlparse(url).query))
+
+
+def build_url(base: str, path: str = "", params: dict = None) -> str:
+    """Build URL from base, path and query parameters."""
+    from urllib.parse import urljoin, urlencode
+    url = urljoin(base, path)
+    if params:
+        url += "?" + urlencode(params)
+    return url
+
+
+def encode_params(params: dict) -> str:
+    """Encode dictionary to URL query string."""
+    from urllib.parse import urlencode
+    return urlencode(params)
