@@ -3,7 +3,7 @@
 # Core text & file utils
 from .text_chunker import chunk_text
 from .file_parser import extract_text_from_file, validate_file, get_file_extension, get_file_name, get_file_size
-from .file_type_utils import normalize_extension, is_image_file, is_video_file, is_audio_file
+from .file_type_utils import normalize_extension, is_image_file, is_video_file, is_audio_file, is_document_file, is_archive_file
 
 # Validation & normalization
 from .email_utils import is_valid_email, normalize_email, extract_username, extract_domain_from_email
@@ -30,7 +30,7 @@ from .formatting import format_number, format_currency, format_phone, format_per
 
 __all__ = [
     "chunk_text", "extract_text_from_file", "validate_file", "get_file_extension", "get_file_name", "get_file_size",
-    "is_valid_email", "normalize_email", "extract_username", "extract_domain_from_email", "is_large_file", "normalize_extension", "is_image_file", "is_video_file", "is_audio_file", "bytes_to_kb", "bytes_to_mb",
+    "is_valid_email", "normalize_email", "extract_username", "extract_domain_from_email", "is_large_file", "normalize_extension", "is_image_file", "is_video_file", "is_audio_file", "is_document_file", "is_archive_file", "bytes_to_kb", "bytes_to_mb",
     "bytes_to_human_readable", "human_readable_to_bytes", "format_bytes",
     "get_utc_now", "add_days", "add_hours", "add_minutes", "add_seconds", "add_months", "add_weeks", "add_years", "is_expired", "time_until_expiry", "format_iso", "parse_iso", "days_between", "is_weekend", "is_weekday", "format_date", "seconds_to_hms", "parse_date", "get_quarter", "is_leap_year", "get_days_in_month", "is_same_day", "get_age", "format_duration", "time_ago",
     "slugify", "truncate", "truncate_words", "remove_extra_spaces", "extract_urls", "mask_email", "count_words", "count_chars", "count_vowels", "count_lines", "remove_html_tags", "reverse_string", "remove_special_chars", "starts_with", "ends_with", "contains_substring", "to_snake_case", "to_camel_case", "to_upper", "to_lower", "extract_numbers", "repeat_text", "join_with", "strip_punctuation",

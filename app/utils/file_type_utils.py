@@ -27,3 +27,15 @@ def is_audio_file(filename: str) -> bool:
     """Check if file is an audio based on extension."""
     audio_exts = {".mp3", ".wav", ".flac", ".aac", ".ogg", ".m4a", ".wma"}
     return normalize_extension(filename) in audio_exts
+
+
+def is_document_file(filename: str) -> bool:
+    """Check if file is a document based on extension."""
+    doc_exts = {".pdf", ".doc", ".docx", ".txt", ".rtf", ".odt", ".xls", ".xlsx", ".ppt", ".pptx"}
+    return normalize_extension(filename) in doc_exts
+
+
+def is_archive_file(filename: str) -> bool:
+    """Check if file is an archive based on extension."""
+    archive_exts = {".zip", ".rar", ".7z", ".tar", ".gz", ".bz2", ".xz"}
+    return normalize_extension(filename) in archive_exts
