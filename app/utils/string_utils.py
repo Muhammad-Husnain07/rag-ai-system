@@ -134,3 +134,24 @@ def to_lower(text: str) -> str:
 def extract_numbers(text: str) -> list:
     """Extract all numbers from a string."""
     return [int(m) for m in re.findall(r'-?\d+', text)]
+
+
+def repeat_text(text: str, times: int) -> str:
+    """Repeat text specified number of times."""
+    return text * times
+
+
+def join_with(items: list, separator: str = ", ", last_separator: str = " and ") -> str:
+    """Join list items with separator, using last_separator for the final item."""
+    if not items:
+        return ""
+    if len(items) == 1:
+        return str(items[0])
+    if len(items) == 2:
+        return f"{items[0]}{last_separator}{items[1]}"
+    return separator.join(str(i) for i in items[:-1]) + last_separator + str(items[-1])
+
+
+def strip_punctuation(text: str) -> str:
+    """Remove all punctuation from text."""
+    return re.sub(r'[^\w\s]', '', text)
